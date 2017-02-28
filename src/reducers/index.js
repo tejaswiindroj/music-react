@@ -3,7 +3,7 @@ import {routerReducer} from 'react-router-redux'
 
 let initLoading = {
     listLoading: true,
-    albumsFilterLoading: true
+    tableLoading: true
 }
 export const loading = (state = initLoading, action) => {
     switch (action.type) {
@@ -13,12 +13,12 @@ export const loading = (state = initLoading, action) => {
             return {
                 ...state,
                 listLoading: action.loading,
-                albumsFilterLoading: action.albumsFilterLoading
+                tableLoading: action.tableLoading
             };
-        case 'LOAD_ALBUMS_FILTER':
+        case 'LOAD_TABLE':
             return {
                 ...state,
-                albumsFilterLoading: action.loading
+                tableLoading: action.loading
             }
         default:
             return state;
@@ -45,6 +45,25 @@ export const albums = (state = [], action) => {
     }
 };
 
-const App = combineReducers({routing: routerReducer, bands, albums, loading});
+let initSort = {
+    field: 'id',
+    order: 'asc'
+}
+export const sort = (state = initSort, action) => {
+    switch (action.type) {
+        case 'PUT_BANDS':
+        case 'PUT_ALBUMS':
+            return {
+                ...state,
+                ...action.sort
+            };
+        case 'RESET_LOADER':
+            return {field: 'id', order: 'asc'};
+        default:
+            return state;
+    }
+}
+
+const App = combineReducers({routing: routerReducer, bands, albums, loading, sort});
 
 export default App

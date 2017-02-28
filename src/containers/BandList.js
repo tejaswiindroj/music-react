@@ -1,15 +1,17 @@
 import {connect} from 'react-redux'
 import BandListComponent from '../components/BandList'
-import {getBands, resetLoader} from '../actions/index'
+import {getBands, resetLoader, getSort, sortCheck} from '../actions/index'
 
 const mapStateToProps = (state, ownProps) => {
-    return {bands: state.bands, loading: state.loading.listLoading}
+    return {bands: state.bands, loading: state.loading, sort: state.sort}
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        getBands: () => dispatch(getBands()),
-        resetLoader: (loading) => dispatch(resetLoader(loading))
+        getBands: (sort) => dispatch(getBands(sort)),
+        resetLoader: (loading) => dispatch(resetLoader(loading)),
+        sortCheck,
+        getSort
     }
 };
 

@@ -1,15 +1,17 @@
 import {connect} from 'react-redux'
 import AlbumListComponent from '../components/AlbumList'
-import {getAlbums, resetLoader} from '../actions/index'
+import {getAlbums, resetLoader, getSort, sortCheck} from '../actions/index'
 
 const mapStateToProps = (state, ownProps) => {
-    return {albums: state.albums, bands: state.bands, loading: state.loading}
+    return {albums: state.albums, bands: state.bands, loading: state.loading, sort: state.sort}
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        getAlbums: (band) => dispatch(getAlbums(band)),
-        resetLoader: (loading) => dispatch(resetLoader(loading))
+        getAlbums: (band, sort) => dispatch(getAlbums(band, sort)),
+        resetLoader: (loading) => dispatch(resetLoader(loading)),
+        sortCheck,
+        getSort
     }
 };
 
