@@ -7,7 +7,7 @@ class App extends Component {
         return (
             <div style={{marginTop:'20px', marginBottom:'20px'}}>
                 <Header/>
-                <div className="ui container">
+                <div style={{marginTop: '20px'}}>
                     { children }
                 </div>
             </div>

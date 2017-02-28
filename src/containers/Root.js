@@ -4,11 +4,13 @@ import {Router, Route, IndexRedirect} from 'react-router'
 import App from '../components/App'
 import BandList from '../containers/BandList'
 import AlbumList from '../containers/AlbumList'
+import BandInput from '../containers/BandInput'
 
 const routes = (
     <Route path="/" component={App}>
         <IndexRedirect to="/bands" />
         <Route path="bands" component={BandList} />
+        <Route path="band/create" component={BandInput} />
         <Route path="albums" component={AlbumList} />
     </Route>
 );

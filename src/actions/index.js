@@ -5,8 +5,9 @@ export const fetchConfig = {
     headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-        'X-CSRF-TOKEN': cookie.load('XSRF-TOKEN')
-    }
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+    credentials: 'same-origin'
 };
 
 export const resetLoader = (loading, tableLoading) => {
@@ -65,4 +66,14 @@ export const sortCheck = (sort, field) => {
             ? 'ascending'
             : 'descending')
         : null
+};
+
+export const postBand = (band) => {
+    return dispatch => {
+        return fetch('/band', {
+            method: 'POST',
+            ...fetchConfig,
+            body: JSON.stringify(band)
+        }).then(response => response.json()).then(json => console.log(json))
+    }
 };
